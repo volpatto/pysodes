@@ -6,15 +6,24 @@ channels:
 dependencies:
 
   # C++
-  - cmake>=3.13
+  - cmake>=3.13, <3.17
   - ninja
   - eigen
-  - gxx_linux-64=7.3.0  # [linux]
+  - boost==1.74
+  - gxx_linux-64  # [linux]
   - ccache  # [unix]
 
   # Python
   - pip
   - python >=3.6
+  - invoke
+  - colorama
 
   # Conda tools
   - exec-wrappers
+
+environment:
+
+  BUILD_DIR:
+    - {{ root }}/build  # [unix]
+    - {{ root }}/.build  # [win]

@@ -1,23 +1,24 @@
-add_library(
-        simple_boost
-        STATIC
-        simple_boost.cpp
-)
-add_executable(example_boost simple_boost)
+#add_library(
+#        simple_boost
+#        STATIC
+#        simple_boost.cpp
+#        ${Boost_INCLUDE_DIRS}
+#)
+add_executable(example_boost simple_boost.cpp)
+add_executable(lorenz_boost lorenz_example.cpp)
 
 if(Boost_FOUND)
-    include_directories(${Boost_INCLUDE_DIRS})
-    target_link_libraries(example_boost ${Boost_LIBRARIES})
-#    target_link_libraries(example_boost Boost)
+    target_link_libraries(
+            example_boost
+            PRIVATE
+                Boost::boost
+    )
 
-
-#
-#    target_link_libraries(
-#            example_boost
-#            PUBLIC
-#            simple_boost
-#            ${Boost_LIBRARIES}
-#    )
+    target_link_libraries(
+            lorenz_boost
+            PRIVATE
+                Boost::boost
+    )
 endif()
 
 install(

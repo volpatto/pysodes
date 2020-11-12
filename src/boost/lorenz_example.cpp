@@ -1,5 +1,3 @@
-#define BOOST_ALLOW_DEPRECATED_HEADERS
-
 #include <boost/numeric/odeint.hpp>
 #include <boost/array.hpp>
 #include <vector>

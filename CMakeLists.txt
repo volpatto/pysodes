@@ -15,9 +15,12 @@ include(FindEigen3)
 
 # Find Eigen3 with a version specification
 find_package(Eigen3 3.3)
+message("-- Eigen3 include dir: " ${EIGEN3_INCLUDE_DIR})
+include_directories(${EIGEN3_INCLUDE_DIR})
 
 # Find Boost
 find_package(Boost 1.74)
+add_definitions(-DBOOST_ALLOW_DEPRECATED_HEADERS)
 
 # Add subdirs to build with cmake
 add_subdirectory(src/boost)

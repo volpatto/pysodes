@@ -6,6 +6,7 @@
 #)
 add_executable(example_boost simple_boost.cpp)
 add_executable(lorenz_boost lorenz_example.cpp)
+add_executable(odeint_eigen_example odeint_eigen_example.cpp)
 
 if(Boost_FOUND)
     target_link_libraries(
@@ -16,6 +17,12 @@ if(Boost_FOUND)
 
     target_link_libraries(
             lorenz_boost
+            PRIVATE
+                Boost::boost
+    )
+
+    target_link_libraries(
+            odeint_eigen_example
             PRIVATE
                 Boost::boost
     )

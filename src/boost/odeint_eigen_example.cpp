@@ -54,7 +54,7 @@ int main()
     // Integrate over time
     auto t_init = 0.0;
     auto t_final = 10.0;
-    auto dt = 0.001;
+    auto dt = 0.01;
     auto steps = integrate_const(
         stepper(),
         lorenz,
@@ -68,5 +68,16 @@ int main()
     for (size_t i = 0; i <= steps; i++)
     {
         std::cout << times[i] << '\t' << x_sol[i][0] << '\t' << x_sol[i][1] << '\t' << x_sol[i][2] << '\n';
+    }
+
+    std::cout << "\n*******************\n\n";
+
+    // Alternatively, for a finer control, a single step can be done
+    X << 0., 1., 0.1;
+    std::cout << 0.0 << '\t' << X[0] << '\t' << X[1] << '\t' << X[2] << '\n';
+    for (auto t = t_init; t < t_final; t += dt)
+    {
+        stepper().do_step(lorenz, X, t, dt);
+        std::cout << t << '\t' << X[0] << '\t' << X[1] << '\t' << X[2] << '\n';
     }
 }

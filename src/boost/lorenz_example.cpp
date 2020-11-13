@@ -7,7 +7,8 @@ using namespace boost::numeric::odeint;
 /* The type of container used to hold the state vector */
 typedef boost::array<double, 3> state_type;
 
-void lorenz(const state_type &x, state_type &dxdt, const double t) {
+void lorenz(const state_type &x, state_type &dxdt, const double t)
+{
     double sigma = 10.0;
     double R = 28.0;
     double b = 8.0 / 3.0;
@@ -18,20 +19,23 @@ void lorenz(const state_type &x, state_type &dxdt, const double t) {
 }
 
 // An example of observer to record steps in the integration
-struct boost_array_observer {
+struct boost_array_observer
+{
     std::vector<state_type> &m_states;
     std::vector<double> &m_times;
 
     boost_array_observer(std::vector<state_type> &states, std::vector<double> &times)
-            : m_states(states), m_times(times) {}
+        : m_states(states), m_times(times) {}
 
-    void operator()(const state_type &x, double t) {
+    void operator()(const state_type &x, double t)
+    {
         m_states.push_back(x);
         m_times.push_back(t);
     }
 };
 
-int main() {
+int main()
+{
     // this time, let the num of steps be known
     const auto n_steps = 1000;
 
@@ -50,17 +54,17 @@ int main() {
     auto t_final = 10.0;
     auto dt = 0.001;
     auto steps = integrate_const(
-            rk4,
-            lorenz,
-            x,
-            t_init,
-            t_final,
-            dt,
-            boost_array_observer(x_sol, times)
-    );
+        rk4,
+        lorenz,
+        x,
+        t_init,
+        t_final,
+        dt,
+        boost_array_observer(x_sol, times));
 
     // Displaying result on terminal
-    for (size_t i = 0; i <= steps; i++) {
+    for (size_t i = 0; i <= steps; i++)
+    {
         std::cout << times[i] << '\t' << x_sol[i][0] << '\t' << x_sol[i][1] << '\t' << x_sol[i][2] << '\n';
     }
 

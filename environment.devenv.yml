@@ -6,18 +6,26 @@ channels:
 dependencies:
 
   # C++
-  - cmake>=3.13, <3.17
+  - cmake>=3.13, <3.18
   - ninja
   - eigen
   - boost==1.74
   - gxx_linux-64  # [linux]
   - ccache  # [unix]
 
+  # For the bindings
+  - pybind11
+
   # Python
   - pip
   - python >=3.6
+  - setuptools
   - invoke
   - colorama
+
+  # For python tests
+  - pytest
+  - pytest-runner
 
   # Conda tools
   - exec-wrappers

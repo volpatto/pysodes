@@ -22,7 +22,12 @@ include_directories(${EIGEN3_INCLUDE_DIR})
 find_package(Boost 1.74)
 add_definitions(-DBOOST_ALLOW_DEPRECATED_HEADERS)
 
+# Find pybind11
+find_package(pybind11 REQUIRED)
+
 # Add subdirs to build with cmake
 add_subdirectory(examples/boost)
+add_subdirectory(pysodes/sodes)
+add_subdirectory(pysodes/bindings)
 
 set(ARTIFACTS_PATH ${CMAKE_SOURCE_DIR}/build/pysodes)

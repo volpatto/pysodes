@@ -5,13 +5,14 @@
 using namespace Eigen;
 using namespace boost::numeric::odeint;
 
-template<std::size_t N>
+template <std::size_t N>
 using eigen_vector = Matrix<double, N, 1>;
 
 typedef eigen_vector<3> state_type;
 
 // System to be solved
-void lorenz(const state_type &x, state_type &dxdt, const double &t) {
+void lorenz(const state_type &x, state_type &dxdt, const double &t)
+{
     double sigma = 10.0;
     double R = 28.0;
     double b = 8.0 / 3.0;
@@ -22,20 +23,23 @@ void lorenz(const state_type &x, state_type &dxdt, const double &t) {
 }
 
 // An example of observer to record steps in the integration
-struct observer {
+struct observer
+{
     std::vector<state_type> &m_states;
     std::vector<double> &m_times;
 
     observer(std::vector<state_type> &states, std::vector<double> &times)
-            : m_states(states), m_times(times) {}
+        : m_states(states), m_times(times) {}
 
-    void operator()(const state_type &x, double t) {
+    void operator()(const state_type &x, const double &t)
+    {
         m_states.push_back(x);
         m_times.push_back(t);
     }
 };
 
-int main() {
+int main()
+{
     // Defining the state vector with initial conditions
     state_type X;
     X << 0., 1., 0.1;
@@ -52,18 +56,17 @@ int main() {
     auto t_final = 10.0;
     auto dt = 0.001;
     auto steps = integrate_const(
-            stepper(),
-            lorenz,
-            X,
-            t_init,
-            t_final,
-            dt,
-            observer(x_sol, times)
-    );
+        stepper(),
+        lorenz,
+        X,
+        t_init,
+        t_final,
+        dt,
+        observer(x_sol, times));
 
     // Displaying result on terminal
-    for (size_t i = 0; i <= steps; i++) {
+    for (size_t i = 0; i <= steps; i++)
+    {
         std::cout << times[i] << '\t' << x_sol[i][0] << '\t' << x_sol[i][1] << '\t' << x_sol[i][2] << '\n';
     }
-
 }

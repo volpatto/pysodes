@@ -11,7 +11,7 @@ using eigen_vector = Matrix<double, N, 1>;
 typedef eigen_vector<3> state_type;
 
 // System to be solved
-void lorenz(const state_type &x, state_type &dxdt, const double t) {
+void lorenz(const state_type &x, state_type &dxdt, const double &t) {
     double sigma = 10.0;
     double R = 28.0;
     double b = 8.0 / 3.0;

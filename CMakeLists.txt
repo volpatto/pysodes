@@ -23,6 +23,6 @@ find_package(Boost 1.74)
 add_definitions(-DBOOST_ALLOW_DEPRECATED_HEADERS)
 
 # Add subdirs to build with cmake
-add_subdirectory(src/boost)
+add_subdirectory(examples/boost)
 
 set(ARTIFACTS_PATH ${CMAKE_SOURCE_DIR}/build/pysodes)

@@ -10,6 +10,7 @@ add_executable(odeint_eigen_example odeint_eigen_example.cpp)
 add_executable(dynamic_eigen_example dynamic_eigen.cpp)
 add_executable(dynamic_eigen_example_2 dynamic_eigen_2.cpp)
 add_executable(dynamic_lorenz_eigen_example dynamic_lorenz_eigen.cpp)
+add_executable(call_sodes_rk4 call_sodes_rk4.cpp)
 
 if(Boost_FOUND)
     target_link_libraries(
@@ -46,6 +47,13 @@ if(Boost_FOUND)
             dynamic_eigen_example_2
             PRIVATE
                 Boost::boost
+    )
+
+    target_link_libraries(
+            call_sodes_rk4
+            PRIVATE
+                Boost::boost
+                odeint_wrapper
     )
 endif()
 

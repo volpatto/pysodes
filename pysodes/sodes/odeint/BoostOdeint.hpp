@@ -36,7 +36,7 @@ struct Observer
 };
 
 pair<vector<double>, vector<state_type>> integrate_rk4(
-    const function<void(const state_type&, state_type&, const double&)>& f,
+    const function<state_type(const state_type&, state_type&, const double&)>& f,
     const tuple<double, double>& t_span,
     const double& dt,
     state_type& y0)
@@ -72,7 +72,7 @@ using namespace std;
 using namespace Eigen;
 
 pair<vector<double>, vector<ArrayXd>> solve_ivp(
-    const function<void(const ArrayXd&, ArrayXd&, const double&)>& f,
+    const function<ArrayXd(const ArrayXd&, ArrayXd&, const double&)>& f,
     const tuple<double, double>& t_span,
     const double& dt,
     ArrayXd& y0,

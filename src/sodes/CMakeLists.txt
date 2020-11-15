@@ -5,12 +5,12 @@ add_library(
 
 target_include_directories(odeint_wrapper
         INTERFACE
-        ${PROJECT_SOURCE_DIR}/pysodes/sodes/odeint/)
+        ${PROJECT_SOURCE_DIR}/src/sodes/odeint/)
 
 target_sources(
         odeint_wrapper
         INTERFACE
-        ${PROJECT_SOURCE_DIR}/pysodes/sodes/odeint/BoostOdeint.hpp
+        ${PROJECT_SOURCE_DIR}/src/sodes/odeint/BoostOdeint.hpp
 )
 
 #target_include_directories(odeint_wrapper

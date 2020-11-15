@@ -17,7 +17,7 @@ include(FindDeps)
 
 # Add subdirs to build with cmake
 add_subdirectory(examples/boost)
-add_subdirectory(pysodes/sodes)
-add_subdirectory(pysodes/bindings)
+add_subdirectory(src/sodes)
+add_subdirectory(src/bindings)
 
-include_directories(pysodes)
+include_directories(src)

@@ -19,7 +19,7 @@ __version__ = "0.0.1"
 
 ext_modules = [
     Pybind11Extension("python_example",
-        ["pysodes/bindings/bindings.cpp"],
+        ["src/bindings/bindings.cpp"],
         # Example: passing in the version to the compiled code
         define_macros=[('VERSION_INFO', __version__)],
     ),
@@ -32,6 +32,7 @@ setup(
     author_email="dtvolpatto@gmail.com",
     url="https://github.com/volpatto/pysodes",
     description="A test project using pybind11",
+    include_pybind11=False,
     long_description="",
     ext_modules=ext_modules,
     extras_require={"test": "pytest"},

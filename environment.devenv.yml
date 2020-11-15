@@ -19,6 +19,8 @@ dependencies:
   # Python
   - pip
   - python >=3.6
+  - ipython
+  - numpy
   - setuptools
   - invoke
   - colorama

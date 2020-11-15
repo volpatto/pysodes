@@ -10,7 +10,7 @@ target_link_libraries(
             odeint_wrapper
 )
 
-set(ARTIFACTS_PATH ${PROJECT_SOURCE_DIR}/pysodes/_pysodes_bindings)
+set(ARTIFACTS_PATH ${PROJECT_SOURCE_DIR}/src/pysodes/_bindings)
 message("-- Python Artifacts path: ${ARTIFACTS_PATH}")
 
 install(TARGETS sodes_bindings

@@ -73,12 +73,11 @@ setup(
     author_email='dtvolpatto@gmail.com',
     description='A wrapper for solver of Ordinary Differential Equations systems',
     long_description='',
-    packages=find_packages('pysodes'),
-    package_dir={'': 'pysodes'},
+    packages=['pysodes'],
+    package_dir={'pysodes': 'src/pysodes'},
     tests_require=['pytest'],
-    # add an extension module named 'cpp_binding' to the package
-    # 'python_package'
-    ext_modules=[CMakeExtension('_pysodes_bindings/pysodes')],
+    # add an extension module named '_bindings' to the package 'pysodes'
+    ext_modules=[CMakeExtension('src/pysodes/_bindings/')],
     # add custom build_ext command
     cmdclass=dict(build_ext=CMakeBuild),
     zip_safe=False,

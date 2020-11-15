@@ -78,7 +78,7 @@ setup(
     tests_require=['pytest'],
     # add an extension module named 'cpp_binding' to the package
     # 'python_package'
-    ext_modules=[CMakeExtension('_sodes/pysodes')],
+    ext_modules=[CMakeExtension('_pysodes_bindings/pysodes')],
     # add custom build_ext command
     cmdclass=dict(build_ext=CMakeBuild),
     zip_safe=False,

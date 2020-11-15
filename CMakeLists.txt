@@ -21,5 +21,3 @@ add_subdirectory(pysodes/sodes)
 add_subdirectory(pysodes/bindings)
 
 include_directories(pysodes)
-
-set(ARTIFACTS_PATH ${CMAKE_SOURCE_DIR}/build/pysodes)

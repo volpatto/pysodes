@@ -24,6 +24,12 @@ dependencies:
   - setuptools
   - invoke
   - colorama
+  - scipy
+
+  # Python notebooks
+  - jupyter
+  - jupyter_contrib_nbextensions
+  - jupyter_nbextensions_configurator
 
   # For python tests
   - pytest

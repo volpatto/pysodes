@@ -1,6 +1,6 @@
 from typing import Callable, Tuple
 import numpy as np
-from src.pysodes._bindings.sodes_bindings import solve_ivp_odeint
+from pysodes._bindings.sodes_bindings import solve_ivp_odeint
 
 
 def solve_ivp_wrapper(

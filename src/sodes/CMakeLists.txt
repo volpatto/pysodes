@@ -15,3 +15,7 @@ target_sources(
         ${PROJECT_SOURCE_DIR}/src/sodes/odeint/BoostOdeint.hpp
         ${PROJECT_SOURCE_DIR}/src/sodes/math_types.hpp
 )
+
+if(OPTIMIZE_FLAG MATCHES ON)
+    target_compile_options(odeint_wrapper INTERFACE "-Ofast")
+endif()

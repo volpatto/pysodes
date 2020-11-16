@@ -10,6 +10,10 @@ target_link_libraries(
             odeint_wrapper
 )
 
+if(OPTIMIZE_FLAG MATCHES ON)
+    target_compile_options(sodes_bindings INTERFACE "-Ofast")
+endif()
+
 set(ARTIFACTS_PATH ${PROJECT_SOURCE_DIR}/src/pysodes/_bindings)
 message("-- Python bindings artifacts path: ${ARTIFACTS_PATH}")
 

@@ -9,7 +9,7 @@ using namespace sodes::odeint;
 using namespace Eigen;
 
 // System to be solved
-ArrayXd lorenz(const ArrayXd &x, ArrayXd &dxdt, const double &t)
+ArrayXd lorenz(const Ref<ArrayXd> x, Ref<ArrayXd> dxdt, const double &t)
 {
     double sigma = 10.0;
     double R = 28.0;

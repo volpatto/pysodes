@@ -12,13 +12,17 @@
 #include <utility>
 #include <stdexcept>
 
+#include "math_types.hpp"
+
 namespace sodes::detail::odeint {
 
 using namespace boost::numeric::odeint;
 using namespace Eigen;
 using namespace std;
 
-typedef ArrayXd state_type;
+using namespace sodes::math_types;
+
+typedef eigen_array_1d state_type;
 
 struct Observer
 {
@@ -36,7 +40,7 @@ struct Observer
 };
 
 pair<vector<double>, vector<state_type>> integrate_rk4(
-    const function<state_type(const state_type&, state_type&, const double&)>& f,
+    const function<state_type(eigen_array_1d_constref, eigen_array_1d_ref, const double&)>& f,
     const tuple<double, double>& t_span,
     const double& dt,
     state_type& y0)
@@ -70,9 +74,10 @@ namespace sodes::odeint {
 
 using namespace std;
 using namespace Eigen;
+using namespace sodes::math_types;
 
 pair<vector<double>, vector<ArrayXd>> solve_ivp(
-    const function<ArrayXd(const ArrayXd&, ArrayXd&, const double&)>& f,
+    const function<ArrayXd(eigen_array_1d_constref, eigen_array_1d_ref, const double&)>& f,
     const tuple<double, double>& t_span,
     const double& dt,
     ArrayXd& y0,

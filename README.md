@@ -8,6 +8,9 @@ The idea is to design a header-only thin wrapper for some (not all) [Boost::odei
 experimental and my main goal is to learn and improve my hybrid C++/Python code development and
 bindings techniques.
 
+**P.S.:** `pysODEs` is the bindings for `sODEs`, which is the C++ code part. And `sODEs` means
+"solvers for Ordinary Differential Equations systems". ;)
+
 ## Contact
 
 My name is Diego. My email is dtvolpatto@gmail.com.

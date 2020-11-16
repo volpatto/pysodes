@@ -73,8 +73,8 @@ setup(
     author_email='dtvolpatto@gmail.com',
     description='A wrapper for solver of Ordinary Differential Equations systems',
     long_description='',
-    packages=['pysodes'],
-    package_dir={'pysodes': 'src/pysodes'},
+    packages=find_packages(where='src'),
+    package_dir={'': 'src'},
     install_requires=["numpy"],
     tests_require=['pytest'],
     # add an extension module named '_bindings' to the package 'pysodes'

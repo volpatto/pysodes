@@ -1,6 +1,6 @@
 import numpy as np
 
-from src.pysodes.odeint import solve_ivp_wrapper
+from odeint import solve_ivp_wrapper
 
 
 def lorenz(x, dxdt, t):

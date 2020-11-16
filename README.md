@@ -1,6 +1,6 @@
 # pysODEs
 
-Testing C++ ODE solvers wrapping to Python. Really **early stage (WORK-IN-PROGRESS)** project.
+C++ ODE solvers wrappers for Python. Really **early stage (WORK-IN-PROGRESS)** project.
 
 The idea is to design a header-only thin wrapper for some (not all, actually very few) [Boost::odeint](https://headmyshoulder.github.io/odeint-v2/),
 [GNU Scientific Library](https://www.gnu.org/software/gsl/doc/html/ode-initval.html) and

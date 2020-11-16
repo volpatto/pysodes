@@ -85,12 +85,11 @@ pair<vector<double>, vector<ArrayXd>> solve_ivp(
 {
     using namespace sodes::detail::odeint;
 
-    if (method == "runge_kutta4")
-    {
+    if (method == "runge_kutta4") {
         return integrate_rk4(f, t_span, dt, y0);
-    }
-    else
+    } else {
         throw invalid_argument("Unavailable integration method from Boost::odeint");
+    }
 }
 }  // namespace sodes::odeint
 

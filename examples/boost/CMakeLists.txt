@@ -56,10 +56,3 @@ if(Boost_FOUND)
                 odeint_wrapper
     )
 endif()
-
-install(
-        TARGETS example_boost
-        RUNTIME DESTINATION ${ARTIFACTS_PATH}
-        LIBRARY DESTINATION ${ARTIFACTS_PATH}
-        ARCHIVE DESTINATION ${ARTIFACTS_PATH}
-)

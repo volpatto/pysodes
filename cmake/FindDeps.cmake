@@ -8,4 +8,5 @@ find_package(Boost 1.74)
 add_definitions(-DBOOST_ALLOW_DEPRECATED_HEADERS)
 
 # Find pybind11
+find_package(Python COMPONENTS Interpreter Development REQUIRED)
 find_package(pybind11 REQUIRED)

@@ -11,10 +11,10 @@ target_link_libraries(
 )
 
 set(ARTIFACTS_PATH ${PROJECT_SOURCE_DIR}/src/pysodes/_bindings)
-message("-- Python Artifacts path: ${ARTIFACTS_PATH}")
+message("-- Python bindings artifacts path: ${ARTIFACTS_PATH}")
 
 install(TARGETS sodes_bindings
-        CONFIGURATIONS Release
+        CONFIGURATIONS Release Debug
         RUNTIME DESTINATION ${ARTIFACTS_PATH}
         LIBRARY DESTINATION ${ARTIFACTS_PATH}
 )

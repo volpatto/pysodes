@@ -37,3 +37,6 @@ environment:
   BUILD_DIR:
     - {{ root }}/build  # [unix]
     - {{ root }}/.build  # [win]
+
+  PYTHONPATH:
+    - {{ root }}/src

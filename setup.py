@@ -75,6 +75,7 @@ setup(
     long_description='',
     packages=['pysodes'],
     package_dir={'pysodes': 'src/pysodes'},
+    install_requires=["numpy"],
     tests_require=['pytest'],
     # add an extension module named '_bindings' to the package 'pysodes'
     ext_modules=[CMakeExtension('src/pysodes/_bindings/')],

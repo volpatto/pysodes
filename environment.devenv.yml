@@ -25,6 +25,7 @@ dependencies:
   - invoke
   - colorama
   - scipy
+  - matplotlib
 
   # Python notebooks
   - jupyter

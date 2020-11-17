@@ -39,24 +39,23 @@ struct Observer
     }
 };
 
-pair<vector<double>, vector<state_type>> integrate_rk4(
+template<typename Stepper>
+pair<vector<double>, vector<state_type>> _integrate_const_stepper(
     const function<state_type(eigen_array_1d_constref, eigen_array_1d_ref, const double&)>& f,
     const tuple<double, double>& t_span,
     const double& dt,
-    state_type& y0)
+    state_type& y0,
+    Stepper stepper)
 {
     // Containers to store solution
     vector<state_type> states;
     vector<double> times;
 
-    // Set custom stepper for Eigen algebra and state
-    typedef runge_kutta4<state_type, double, state_type, double, vector_space_algebra> stepper;
-
     // Integrate over time
     auto[t_init, t_final] = t_span;
     auto observer = Observer(states, times);
     integrate_const(
-        stepper(),
+        stepper,
         f,
         y0,
         t_init,
@@ -76,7 +75,7 @@ using namespace std;
 using namespace Eigen;
 using namespace sodes::math_types;
 
-pair<vector<double>, vector<ArrayXd>> solve_ivp(
+pair<vector<double>, vector<ArrayXd>> solve_ivp_const(
     const function<ArrayXd(eigen_array_1d_constref, eigen_array_1d_ref, const double&)>& f,
     const tuple<double, double>& t_span,
     const double& dt,
@@ -86,8 +85,31 @@ pair<vector<double>, vector<ArrayXd>> solve_ivp(
     using namespace sodes::detail::odeint;
 
     if (method == "runge_kutta4") {
-        return integrate_rk4(f, t_span, dt, y0);
-    } else {
+        typedef runge_kutta4<state_type, double, state_type, double, vector_space_algebra> stepper;
+        return _integrate_const_stepper<stepper>(f, t_span, dt, y0, stepper());
+    }
+//    else if (method == "runge_kutta_dopri5") {
+//        typedef runge_kutta_dopri5<state_type, double, state_type, double, vector_space_algebra> stepper;
+//        auto dense_output = make_dense_output<stepper>(1e-6, 1e-6);
+//        return _integrate_const_stepper<dense_output>(f, t_span, dt, y0, dense_output);
+//    }
+    else if (method == "runge_kutta_cash_karp54") {
+        typedef runge_kutta_cash_karp54<state_type, double, state_type, double, vector_space_algebra> stepper;
+        return _integrate_const_stepper<stepper>(f, t_span, dt, y0, stepper());
+    }
+    else if (method == "runge_kutta_fehlberg78") {
+        typedef runge_kutta_fehlberg78<state_type, double, state_type, double, vector_space_algebra> stepper;
+        return _integrate_const_stepper<stepper>(f, t_span, dt, y0, stepper());
+    }
+    else if (method == "modified_midpoint") {
+        typedef modified_midpoint<state_type, double, state_type, double, vector_space_algebra> stepper;
+        return _integrate_const_stepper<stepper>(f, t_span, dt, y0, stepper());
+    }
+    else if (method == "euler") {
+        typedef euler<state_type, double, state_type, double, vector_space_algebra> stepper;
+        return _integrate_const_stepper<stepper>(f, t_span, dt, y0, stepper());
+    }
+    else {
         throw invalid_argument("Unavailable integration method from Boost::odeint");
     }
 }

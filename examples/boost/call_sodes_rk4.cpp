@@ -37,7 +37,7 @@ int main (){
     // Containers to store solution
     std::vector<ArrayXd> x_sol;
     std::vector<double> times;
-    std::tie(times, x_sol) = solve_ivp(lorenz, t_span, dt, X);
+    std::tie(times, x_sol) = solve_ivp_const(lorenz, t_span, dt, X, "runge_kutta_cash_karp54");
 
     // Displaying result on terminal
     auto steps = times.size();

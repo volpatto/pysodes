@@ -61,14 +61,16 @@ def lorenz_scipy(t, y):
     return dxdt_0, dxdt_1, dxdt_2
 
 
-@pytest.mark.parametrize("odeint_method", [
-    "runge_kutta4",
-    "runge_kutta_cash_karp54",
-    "runge_kutta_fehlberg78",
-    "modified_midpoint",
+@pytest.mark.parametrize("odeint_method, rtol", [
+    ["runge_kutta4", 4e-3],
+    ["runge_kutta_cash_karp54", 4e-3],
+    ["runge_kutta_fehlberg78", 4e-3],
+    # This relative error is expected, since midpoint is
+    # a poor quality method and the problem is stiff
+    ["modified_midpoint", 2e-2],
 ])
-def test_compare_regular_steppers_with_scipy_lv(odeint_method):
-    t_span = (0., 1.)
+def test_compare_regular_steppers_with_scipy_lv(odeint_method, rtol):
+    t_span = (0., 10.)
     dt = 0.01
     num_of_steps = int((t_span[1] - t_span[0]) / dt) + 1
     t_eval_scipy = np.linspace(t_span[0], t_span[1], num_of_steps)
@@ -79,7 +81,7 @@ def test_compare_regular_steppers_with_scipy_lv(odeint_method):
     result = solve_ivp(lotka_volterra_scipy, t_span, y0, t_eval=t_eval_scipy, method='Radau')
     solution_scipy = result.y.T
 
-    assert solution_odeint == approx(solution_scipy, rel=1e-3)
+    assert solution_odeint == approx(solution_scipy, rel=rtol)
 
 
 @pytest.mark.parametrize("odeint_method, rtol", [

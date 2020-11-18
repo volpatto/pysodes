@@ -44,8 +44,7 @@ dependencies:
 environment:
 
   BUILD_DIR:
-    - {{ root }}/build  # [unix]
-    - {{ root }}/.build  # [win]
+    - {{ root }}/build-sodes
 
   PYTHONPATH:
     - {{ root }}/src

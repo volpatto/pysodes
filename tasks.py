@@ -90,18 +90,10 @@ def _get_wrappers_command(wrappers_dir: Path) -> str:
 
 
 def _get_test_command():
-    if sys.platform.startswith('win'):
-        test_command = strip_and_join(f"""
-            {BUILD_DIR_DEFAULT}\\test\\tests
-                --success
-                --reporter compact
-        """)
-    else:
-        test_command = strip_and_join(f"""
-            {BUILD_DIR_DEFAULT}/test/tests
-                --success
-                --reporter compact
-        """)
+    test_command = strip_and_join(f"""
+        pytest .
+            -n auto
+    """)
     return test_command
 
 
@@ -198,7 +190,7 @@ def wrappers(c, wrappers_dir=BUILD_DIR_DEFAULT / "wrappers/conda"):
 @task
 def tests(c):
     """
-    Execute tests in Catch, if any
+    Execute tests in pytest, if any
     """
     test_command = _get_test_command()
     c.run(test_command, pty=True)

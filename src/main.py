@@ -1,6 +1,6 @@
 import numpy as np
 
-from pysodes.odeint import solve_ivp_wrapper
+from pysodes.odeint import integrate_const
 
 
 def lorenz(x, dxdt, t):
@@ -19,5 +19,5 @@ t_span = (0., 10.)
 dt = 0.01
 y0 = np.array([0., 1., 0.1])
 
-time, solution = solve_ivp_wrapper(lorenz, t_span, dt, y0)
+time, solution = integrate_const(lorenz, t_span, dt, y0)
 print(solution[-1])

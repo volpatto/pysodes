@@ -35,6 +35,8 @@ dependencies:
   # For python tests
   - pytest
   - pytest-runner
+  - pytest-regressions
+  - pytest-xdist
 
   # Conda tools
   - exec-wrappers

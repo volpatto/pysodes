@@ -1,9 +1,9 @@
 from typing import Callable, Tuple
 import numpy as np
-from pysodes._bindings.sodes_bindings import solve_ivp_odeint
+from pysodes._bindings.sodes_bindings import _integrate_const
 
 
-def solve_ivp_wrapper(
+def integrate_const(
     f: Callable,
     t_span: Tuple,
     dt: float,
@@ -36,7 +36,7 @@ def solve_ivp_wrapper(
         by columns. In other words, solution[:, 0] contains the solution for state 0,
         solution[:, 1] for state 1 and so forth.
     """
-    time, solution = solve_ivp_odeint(f, t_span, dt, y0, method)
+    time, solution = _integrate_const(f, t_span, dt, y0, method)
     solution = np.array(solution)
     time = np.array(time)
     return time, solution

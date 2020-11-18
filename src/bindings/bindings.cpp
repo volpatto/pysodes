@@ -13,7 +13,13 @@ PYBIND11_MODULE(sodes_bindings, m)
 {
     m.doc() = "Binding for sODEs in Python"; // optional module docstring
 
-    m.def("solve_ivp_odeint", &odeint::solve_ivp_const, R"pbdoc(
-        Integrate over time with Boost::odeint wrapper.
-    )pbdoc");
+    m.def("_integrate_const", &odeint::solve_ivp_const, R"pbdoc(
+        Integrate over time with constant time-step from Boost::odeint.
+    )pbdoc",
+    py::arg("f"),
+    py::arg("t_span"),
+    py::arg("dt"),
+    py::arg("y0"),
+    py::arg("method")
+    );
 }

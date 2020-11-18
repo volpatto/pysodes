@@ -35,10 +35,9 @@ jobs:
           conda info -a
           conda devenv
           source activate pysodes
-          inv compile -n 2
+          python setup.py install
       - name: Tests
         shell: bash -l {0}
         run: |
           source activate pysodes
-          python setup.py develop
           pytest . -n auto

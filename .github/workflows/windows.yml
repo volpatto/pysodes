@@ -34,7 +34,7 @@ jobs:
           conda info -a
           conda devenv
           conda activate pysodes
-          inv compile -n 2
+          python setup.py install
       - name: Tests
         shell: powershell
         run: |

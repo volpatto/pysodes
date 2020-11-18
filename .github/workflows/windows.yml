@@ -39,4 +39,5 @@ jobs:
         shell: powershell
         run: |
           conda activate pysodes
+          python setup.py develop
           pytest . -n auto

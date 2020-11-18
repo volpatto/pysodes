@@ -40,4 +40,5 @@ jobs:
         shell: bash -l {0}
         run: |
           source activate pysodes
+          python setup.py develop
           pytest . -n auto

@@ -14,7 +14,7 @@ include(CondaAware)
 include(FindEigen3)
 include(FindDeps)
 
-option(OPTIMIZE_FLAG "Compile using g++ optimize flag." ON)
+option(OPTIMIZE_FLAG "Compile using g++ optimize flag." OFF)
 
 # Add subdirs to build with cmake
 add_subdirectory(examples/boost)

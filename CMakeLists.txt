@@ -7,15 +7,16 @@ set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 # Project name and specifications
 project(sODEs VERSION 0.1.0 LANGUAGES CXX C)
 set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Includes
+## Includes
 include(CCache)
 include(CondaAware)
 include(FindEigen3)
 include(FindDeps)
 
 # Some additional build options
-option(OPTIMIZE_FLAG "Compile using g++ optimize flag." OFF)
+option(OPTIMIZE_FLAG "Compile using g++ optimization flag" OFF)
 option(USE_EIGEN_MKL "Use Eigen with Intel MKL" ON)
 
 if(USE_EIGEN_MKL MATCHES ON)

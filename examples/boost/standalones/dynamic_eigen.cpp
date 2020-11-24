@@ -15,7 +15,7 @@
 using namespace boost::numeric::odeint;
 using namespace Eigen;
 
-typedef Matrix< double , Dynamic , 1 > state_type;
+typedef Matrix<double, Dynamic, 1> state_type;
 
 // System to be solved
 struct sys
@@ -29,10 +29,10 @@ struct sys
 
 int main()
 {
-    state_type x( 1 );
+    state_type x(1);
     x[0] = 10.0;
-    runge_kutta4< state_type , double , state_type , double , vector_space_algebra > rk4;
-    rk4.do_step( sys() , x , 0.0 , 0.1 );
+    runge_kutta4<state_type, double, state_type, double, vector_space_algebra> rk4;
+    rk4.do_step(sys(), x, 0.0, 0.1);
 
     std::cout << x << std::endl;
 }

@@ -14,7 +14,18 @@ include(CondaAware)
 include(FindEigen3)
 include(FindDeps)
 
+# Some additional build options
 option(OPTIMIZE_FLAG "Compile using g++ optimize flag." OFF)
+option(USE_EIGEN_MKL "Use Eigen with Intel MKL" ON)
+
+if(USE_EIGEN_MKL MATCHES ON)
+    include(FindMKL REQUIRED)
+    add_definitions(
+            -DEIGEN_USE_MKL_ALL
+            -DMKL_ILP64
+            -m64
+    )
+endif()
 
 # Add subdirs to build with cmake
 add_subdirectory(examples/boost)

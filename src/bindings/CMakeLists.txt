@@ -11,11 +11,11 @@ target_link_libraries(
 )
 
 if(OPTIMIZE_FLAG MATCHES ON)
-    target_compile_options(sodes_bindings INTERFACE "-Ofast")
+    target_compile_options(sodes_bindings INTERFACE "-O3")
 endif()
 
 set(ARTIFACTS_PATH ${PROJECT_SOURCE_DIR}/src/pysodes/_bindings)
-message("-- Python bindings artifacts path: ${ARTIFACTS_PATH}")
+message(STATUS "Python bindings artifacts path: ${ARTIFACTS_PATH}")
 
 install(TARGETS sodes_bindings
         CONFIGURATIONS Release Debug

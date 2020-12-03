@@ -11,6 +11,7 @@ dependencies:
   - eigen
   - boost==1.74
   - gxx_linux-64  # [linux]
+  - clangxx_osx-64=9.0.0  # [osx]
   - ccache  # [unix]
 
   # For the bindings

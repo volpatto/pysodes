@@ -1,7 +1,7 @@
 name: pysodes
 
 channels:
-  - conda-forge
+  - https://conda.anaconda.org/conda-forge/
 
 dependencies:
 
@@ -9,8 +9,11 @@ dependencies:
   - cmake>=3.13, <3.18
   - ninja
   - eigen
+  - mkl
+  - mkl-include
   - boost==1.74
   - gxx_linux-64  # [linux]
+  - clangxx_osx-64  # [osx]
   - ccache  # [unix]
 
   # For the bindings
@@ -44,8 +47,7 @@ dependencies:
 environment:
 
   BUILD_DIR:
-    - {{ root }}/build  # [unix]
-    - {{ root }}/.build  # [win]
+    - {{ root }}/build-sodes
 
   PYTHONPATH:
     - {{ root }}/src

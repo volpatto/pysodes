@@ -17,5 +17,5 @@ target_sources(
 )
 
 if(OPTIMIZE_FLAG MATCHES ON)
-    target_compile_options(odeint_wrapper INTERFACE "-Ofast")
+    target_compile_options(odeint_wrapper INTERFACE "-O3")
 endif()

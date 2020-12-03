@@ -1,64 +1,38 @@
 /*
- * This example was gathered from Stack Overflow. Only small modification were introduced.
+ * This example reproduces one of the tests with Eigen in the
+ * Boost odeint repository.
  *
- * Check here: https://stackoverflow.com/questions/35656237/dynamic-eigen-vectors-in-boostodeint
- *
- * Credit: Sjonnie (user nickname)
+ * Check here: https://github.com/boostorg/odeint/blob/develop/test_external/eigen/runge_kutta4.cpp
  */
 
 #include <iostream>
 #include <Eigen/Core>
-#include <cstdlib>
 #include <boost/numeric/odeint.hpp>
-#include <boost/numeric/odeint/external/eigen/eigen_algebra.hpp>
+
+#include <boost/numeric/odeint/algebra/vector_space_algebra.hpp>
+#include <boost/numeric/odeint/external/eigen/eigen_resize.hpp>
 
 using namespace boost::numeric::odeint;
+using namespace Eigen;
 
-typedef Eigen::VectorXd state_type;
+typedef Matrix<double, Dynamic, 1> state_type;
 
-Eigen::MatrixXd A;
-
-void ODE_function (const state_type &x, state_type &dxdt, const double &t)
+// System to be solved
+struct sys
 {
-    dxdt = A * x;
-}
-
-void write_states(const state_type &x, const double &t)
-{
-    std::cout << t << "\t";
-    for (int i = 0; i < x.size(); i++)
+    template<class State, class Deriv>
+    void operator()(const State& x, Deriv& dxdt, double t) const
     {
-        std::cout << *(x.data()+i) << "\t";
+        dxdt[0] = 1.0;
     }
-    std::cout << std::endl;
-}
+};
 
 int main()
 {
-    int nr_of_states = 10;
-    state_type x;
+    state_type x(1);
+    x[0] = 10.0;
+    runge_kutta4<state_type, double, state_type, double, vector_space_algebra> rk4;
+    rk4.do_step(sys(), x, 0.0, 0.1);
 
-    std::cout << "Simulation with " << nr_of_states << " states\n";
-
-    x = state_type(nr_of_states);
-    A = Eigen::MatrixXd(nr_of_states, nr_of_states);
-
-    srand(365);
-
-    for (int i = 0; i < A.size(); i++)
-    {
-        *(A.data()+i) = ((double)rand()/(double)RAND_MAX);
-    }
-
-    for (int i = 0; i < x.size(); i++)
-    {
-        *(x.data()+i) = i;
-    }
-
-    typedef runge_kutta_dopri5<state_type, double, state_type, double, vector_space_algebra> stepper;
-    integrate_adaptive(stepper(), ODE_function, x, 0.0, 25.0, 0.1, write_states);
-
-    std::cout <<std::endl << "final state vector: " << std::endl << x << std::endl;
-
-    return 0;
+    std::cout << x << std::endl;
 }
